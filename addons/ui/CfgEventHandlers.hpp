@@ -26,4 +26,7 @@ class Extended_DisplayLoad_EventHandlers {
     class RscDisplayRemoteMissions {
         ADDON = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplayRemoteMissions)'));
     };
+    class Display3DEN {
+        ADDON = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplay3DEN)'));
+    };
 };
