@@ -1,0 +1,67 @@
+pool:
+    vmImage: windows-2019
+
+steps:
+  - checkout: self
+    fetchDepth: 1
+    displayName: Checkout CBA A3
+
+  - powershell: docker pull dahlgren/arma3tools:python
+    displayName: Download Arma 3 tools image
+
+  - task: DownloadPipelineArtifact@2
+    displayName: Download Arma 3 tools
+    inputs:
+      buildType: specific
+      project: e7eb96e8-c73f-4620-8dec-23e1895db846
+      definition: 2
+      runVersion: latestFromBranch
+      runBranch: refs/heads/master
+      artifactName: tools
+      targetPath: C:\arma3tools
+
+  - task: DownloadPipelineArtifact@2
+    displayName: Download Arma 3 data
+    inputs:
+      buildType: specific
+      project: e7eb96e8-c73f-4620-8dec-23e1895db846
+      definition: 2
+      runVersion: latestFromBranch
+      runBranch: refs/heads/master
+      artifactName: arma3
+      targetPath: C:\build
+
+  - powershell: |
+      New-Item C:\build\build.cmd
+      Set-Content C:\build\build.cmd 'subst P: C:\build && regedit /S P:\x\cba\tools\pboproject.reg && py P:\x\cba\tools\make.py ci'
+    displayName: Setup environment
+
+  - powershell:
+      docker run
+      -e PYTHONUNBUFFERED=1
+      -v C:\arma3tools:C:\arma3tools
+      -v C:\build:C:\build
+      -v $(Build.SourcesDirectory):C:\build\x\cba
+      dahlgren/arma3tools:python
+      C:\build\build.cmd
+    displayName: Build
+
+  - powershell: |
+     mkdir C:\build\logs
+     copy C:\build\temp\*.log C:\build\logs
+    displayName: Copy logs
+    condition: succeededOrFailed()
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish build logs
+    inputs:
+      targetPath: C:\build\logs
+      artifact: logs
+    condition: succeededOrFailed()
+
+  - task: PublishPipelineArtifact@1
+    displayName: Publish @cba_a3
+    inputs:
+      targetPath: $(Build.SourcesDirectory)\release\@cba_a3
+      artifact: '@cba_a3'
+    condition: succeededOrFailed()
