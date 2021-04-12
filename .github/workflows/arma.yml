@@ -2,8 +2,6 @@ name: Arma
 
 on:
   push:
-    branches:
-    - master
   pull_request:
 
 jobs:
@@ -29,6 +27,22 @@ jobs:
     - name: Lint (sqflint)
       uses: arma-actions/sqflint@master
       continue-on-error: true # No failure due to many false-positives
+
+  sqfc:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout the source code
+      uses: actions/checkout@master
+      with:
+        path: x\cba
+    - name: Create work drive
+      run: 'subst P: .'
+    - name: Copy A3 files
+      run: Copy-Item -Path "x\cba\include\a3" -Destination "a3" -Recurse
+    - name: Run ArmaScriptCompiler
+      uses: arma-actions/sqfc@latest
+      with:
+        directory: x\cba
 
   build:
     runs-on: ubuntu-latest

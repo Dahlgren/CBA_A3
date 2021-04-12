@@ -1,0 +1,12 @@
+{
+  "inputDirs": [
+    "P:/x/cba/addons"
+  ],
+  "includePaths": [
+    "P:/"
+  ],
+  "excludeList": [
+  ],
+  "outputDir": "P:/",
+  "workerThreads": 8
+}
