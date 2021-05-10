@@ -3,7 +3,7 @@ name: pboProject
 on:
   push:
     branches:
-    - master
+#    - master
   pull_request_target:
 
 jobs:
@@ -63,3 +63,29 @@ jobs:
       with:
         name: '@cba_a3-${{ github.sha }}'
         path: x\cba\release\@cba_a3
+
+  arma3server:
+    runs-on: ubuntu-latest
+    needs: pboproject
+    steps:
+    - name: Checkout the source code
+      uses: actions/checkout@master
+    - name: Download server
+      run: |
+        curl "${ARMA3_SERVER_URL}" -o arma3server.zip
+        7z x arma3server.zip -oarma3server/
+        rm arma3server.zip
+      env:
+        ARMA3_SERVER_URL: ${{ secrets.ARMA3_SERVER_URL }}
+    - name: Download built CBA A3
+      uses: actions/download-artifact@v2
+      with:
+        name: '@cba_a3-${{ github.sha }}'
+        path: arma3server/@cba_a3
+    - name: Run unit tests
+      run: |
+        cp -r tools/unit_tests.vr arma3server/mpmissions/unit_tests.vr
+        cp tools/unit_tests.cfg arma3server/server.cfg
+        cd arma3server
+        chmod +x arma3server_x64
+        python3 ../tools/unit_tests.py
