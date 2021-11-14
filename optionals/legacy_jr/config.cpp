@@ -11,6 +11,6 @@ class CfgPatches {
         requiredAddons[] = {"cba_legacy_jr_prep"};
         version = VERSION;
     };
-};
+}
 
 #include "CfgWeapons.hpp"

@@ -68,7 +68,7 @@ class _flexiMenu_RscShortcutButton: RscShortcutButton {
         right = 0.01;
         bottom = 0.002; //0.016;
     };
-};
+}
 //-----------------------------------------------------------------------------
 #include "flexiMenu\data\menu_rose.hpp"
 #include "flexiMenu\data\menu_arma2.hpp"
