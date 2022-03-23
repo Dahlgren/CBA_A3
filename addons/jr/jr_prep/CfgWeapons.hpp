@@ -189,6 +189,31 @@ class CfgWeapons {
         };
     };
 
+    class arifle_MSBS65_base_F: Rifle_Base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            delete MuzzleSlot;
+            delete CowsSlot;
+            delete PointerSlot;
+        };
+    };
+
+    class arifle_MSBS65_Mark_base_F: arifle_MSBS65_base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            delete MuzzleSlot;
+            delete CowsSlot;
+            delete PointerSlot;
+            delete UnderBarrelSlot;
+        };
+    };
+
+    class arifle_MSBS65_UBS_base_F: arifle_MSBS65_base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            delete MuzzleSlot;
+            delete CowsSlot;
+            delete PointerSlot;
+        };
+    };
+
     class Pistol;
     class Pistol_Base_F: Pistol {
         class WeaponSlotsInfo;

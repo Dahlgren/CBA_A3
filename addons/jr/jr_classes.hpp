@@ -138,6 +138,10 @@ class asdg_OpticRail1913: asdg_OpticRail { // the "medium" rail, long enough to 
         optic_ERCO_khk_F = 1;
         optic_ERCO_snd_F = 1;
         optic_Yorris = 1;
+        optic_ico_01_f = 1;
+        optic_ico_01_black_f = 1;
+        optic_ico_01_camo_f = 1;
+        optic_ico_01_sand_f = 1;
     };
 };
 

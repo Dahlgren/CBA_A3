@@ -795,6 +795,61 @@ class CfgWeapons {
         };
     };
 
+    class arifle_MSBS65_base_F: Rifle_Base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class MuzzleSlot: asdg_MuzzleSlot_65 {
+                iconPosition[] = {0,0.38};
+                iconScale = 0.2;
+            };
+            class CowsSlot: asdg_OpticRail1913 {
+                iconPosition[] = {0.37,0.24};
+                iconScale = 0.2;
+            };
+            class PointerSlot: asdg_FrontSideRail {
+                iconPosition[] = {0.21,0.38};
+                iconScale = 0.2;
+            };
+        };
+    };
+
+    class arifle_MSBS65_Mark_base_F: arifle_MSBS65_base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class MuzzleSlot: asdg_MuzzleSlot_65 {
+                iconPosition[] = {0,0.38};
+                iconScale = 0.2;
+            };
+            class CowsSlot: asdg_OpticRail1913 {
+                iconPosition[] = {0.37,0.24};
+                iconScale = 0.2;
+            };
+            class PointerSlot: asdg_FrontSideRail {
+                iconPosition[] = {0.21,0.38};
+                iconScale = 0.2;
+            };
+            class UnderBarrelSlot: asdg_UnderSlot {
+                iconPosition[] = {0.2,0.8};
+                iconScale = 0;
+            };
+        };
+    };
+
+    class arifle_MSBS65_UBS_base_F: arifle_MSBS65_base_F {
+        class WeaponSlotsInfo: WeaponSlotsInfo {
+            class MuzzleSlot: asdg_MuzzleSlot_65 {
+                iconPosition[] = {0.12,0.4};
+                iconScale = 0.2;
+            };
+            class CowsSlot: asdg_OpticRail1913 {
+                iconPosition[] = {0.46,0.27};
+                iconScale = 0.2;
+            };
+            class PointerSlot: asdg_FrontSideRail {
+                iconPosition[] = {0.31,0.4};
+                iconScale = 0.2;
+            };
+        };
+    };
+
     class Pistol;
     class Pistol_Base_F: Pistol {
         class WeaponSlotsInfo;
